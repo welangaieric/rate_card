@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Development Rate Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Add Bootstrap Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+        :root {
+            --primary-color: #094067;
+            --secondary-color: #3da9fc;
+            --accent-color: #ff6b6b;
+            --text-color: #5f6c7b;
+            --background-color: #fffffe;
+            --card-background: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Poppins", sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--background-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(78, 84, 200, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(143, 148, 251, 0.1) 0%, transparent 20%);
+            background-attachment: fixed;
+            padding-bottom: 4.375rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            
+        }
+
+        .container {
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            flex-direction: column;
+
+            /* margin: 0 auto; */
+            /* padding: 2rem 1rem; */
+            padding-bottom: 30px;
+            
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 900;
+            font-style: italic;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            text-align: center;
+            width: 90%;
+        }
+
+        .section {
+            width: 90%;
+
+            background-color: var(--card-background);
+            border-radius: 0.5rem;
+            box-shadow: 0 0.25rem 0.375rem rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 200;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(15.625rem, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-background);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-0.3125rem);
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .card p {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+            font-size: 1rem;
+        }
+
+        th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+       
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #ff4757;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            align-items: center;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: var(--card-background);
+            margin: 5% auto 20% auto;
+            padding: 1.25rem;
+            border-radius: 0.5rem;
+            width: 95%;
+            max-width: 37.5rem;
+        }
+        
+        /* From Uiverse.io by elijahgummer */ 
+input {
+  width: 200px;
+  padding: 12px;
+  border: 2px solid #3498db;
+  border-radius: 8px;
+  outline: none;
+  font-size: 18px;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  background-color: #fff;
+  color: #333;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border-color: #2980b9;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.5);
+  transform: scale(1.02);
+}
+
+/* Placeholder Styling */
+input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+/* Hover Effect */
+input:hover {
+  background-color: #f0f8ff;
+}
+
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 1.75rem;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+        }
+
+        #quoteBreakdown {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f0f0f0;
+            border-radius: 0.25rem;
+            font-size: 1rem;
+        }
+        .mdb{
+            width: 330px;
+            height: 80px;
+            position: fixed;
+            top: 20px;
+            right: -2000px;
+            transform: translateX(10);
+        }
+        .mdb.show{
+            right: 20px;
+        }
+        .snackbar {
+           width: 100%;
+           height: 100%;
+            border-radius: 8px;
+            box-sizing: border-box;
+            padding: 10px 15px;
+            background-color: #ffffff;
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            gap: 15px;
+            
+            }
+            .wave {
+            position: absolute;
+            transform: rotate(90deg);
+            left: -31px;
+            top: 32px;
+            width: 80px;
+            /* fill: #04e4003a; */
+            }
+            .icon-container {
+            width: 35px;
+            height: 35px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /* background-color: #04e40048; */
+            border-radius: 50%;
+            margin-left: 8px;
+            }
+            .snackbar_icon {
+            width: 17px;
+            height: 17px;
+            
+            }
+            .message-text-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            flex-grow: 1;
+            }
+            .message-text,
+            .sub-text {
+            margin: 0;
+            cursor: default;
+            }
+            .message-text {
+            /* color: #269b24; */
+            font-size: 17px;
+            font-weight: 700;
+            }
+            .sub-text {
+            font-size: 14px;
+            color: #555;
+            }
+            .cross-icon {
+            width: 18px;
+            height: 18px;
+            color: #555;
+            cursor: pointer;
+            }
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: var(--card-background);
+            box-shadow: 0 -0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 0.625rem 0;
+            z-index: 1000;
+        }
+
+        .mobile-nav a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-color);
+            font-size: 0.8rem;
+        }
+
+        .mobile-nav .icon {
+            background-color: var(--primary-color);
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 0.3125rem;
+            transition: all 0.3s ease;
+            font-size: 1.25rem;
+        }
+
+        .mobile-nav a.active .icon {
+            background-color: var(--secondary-color);
+            transform: translateY(-0.625rem);
+        }
+        .mobile-nav i{
+            color: var(--background-color);
+        }
+        .mobile-nav a.active {
+            color: var(--primary-color);
+
+        }
+/* From Uiverse.io by alexmaracinaru */ 
+.cta {
+  position: relative;
+  margin: auto;
+  padding: 12px 18px;
+  transition: all 0.2s ease;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.cta:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  border-radius: 50px;
+  background: #b1dae7;
+  width: 45px;
+  height: 45px;
+  transition: all 0.3s ease;
+  box-shadow: #333 1px 1px 3px;
+
+}
+
+.cta span {
+  position: relative;
+  font-family: "Ubuntu", sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #234567;
+}
+
+.cta svg {
+  position: relative;
+  top: 0;
+  margin-left: 10px;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke: #234567;
+  stroke-width: 2;
+  transform: translateX(-5px);
+  transition: all 0.3s ease;
+}
+.header {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .logo {
+            max-width: 200px;
+            height: auto;
+        }
+
+.cta:hover:before {
+  width: 100%;
+  background: #b1dae7;
+}
+
+.cta:hover svg {
+  transform: translateX(0);
+}
+
+.cta:active {
+  transform: scale(0.95);
+}
+
+        @media (min-width: 48rem) {
+            html {
+                font-size: 18px;
+            }
+
+            .mobile-nav {
+                display: none;
+            }
+
+            body {
+                padding-bottom: 0;
+            }
+        }
+
+        @media (max-width: 48rem) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <img src="https://konnektsmartlife.net/img/logo(v5).png" alt="Company Logo" class="logo">
+            
+        </header>
+        <h1>Software Development Rate Card</h1>
+
+        <section id="categories" class="section">
+            <h2>Categories of Software Solutions</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Personal & Business Website</h3>
+                    <p>Basic: KES 15,000 - 30,000</p>
+                    <p>Intermediate: KES 30,000 - 60,000</p>
+                    <p>Advanced: KES 60,000 - 150,000+</p>
+                    <p>Timeline: 1 - 3 Weeks</p>
+                </div>
+                <div class="card">
+                    <h3>Mobile Apps</h3>
+                    <p>Basic: KES 20,000 - 40,000</p>
+                    <p>Intermediate: KES 40,000 - 80,000</p>
+                    <p>Advanced: KES 80,000 - 120,000+</p>
+                    <p>Timeline: 1 - 3 Months</p>
+                </div>
+                <div class="card">
+                    <h3>E-commerce Applications</h3>
+                    <p>Basic: KES 30,000 - 60,000</p>
+                    <p>Intermediate: KES 60,000 - 150,000</p>
+                    <p>Advanced: KES 150,000 - 600,000+</p>
+                    <p>Timeline: 1 - 3 months</p>
+                </div>
+                <div class="card">
+                    <h3>CRM and Business Management</h3>
+                    <p>Basic: KES 50,000 - 100,000</p>
+                    <p>Intermediate: KES 100,000 - 180,000</p>
+                    <p>Advanced: KES 180,000 - 360,000+</p>
+                    <p>Timeline: 1.5 - 4 months</p>
+                </div>
+                
+                <div class="card">
+                    <h3>E-Learning Platforms</h3>
+                    <p>Basic: KES 75,000 - 150,000</p>
+                    <p>Intermediate: KES 150,000 - 300,000</p>
+                    <p>Advanced: KES 300,000 - 600,000+</p>
+                    <p>Timeline: 1 - 3 months</p>
+                </div>
+                <div class="card">
+                    <h3>Networking Applications</h3>
+                    <p>Basic: KES 40,000 - 80,000</p>
+                    <p>Intermediate: KES 80,000 - 160,000</p>
+                    <p>Advanced: KES 160,000 - 800,000+</p>
+                    <p>Timeline: 2 - 5 months</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="hourly-rates" class="section">
+            <h2>Specialized Service Rates (Hourly)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Service</th>
+                        <th>Rate (KES/hour)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Node.js Backend Development</td>
+                        <td>2,000 - 4,000</td>
+                    </tr>
+                    <tr>
+                        <td>React Frontend Development</td>
+                        <td>1,800 - 3,600</td>
+                    </tr>
+                    <tr>
+                        <td>MongoDB Database Management</td>
+                        <td>1,900 - 3,800</td>
+                    </tr>
+                    <tr>
+                        <td>SQL Database Management</td>
+                        <td>2,000 - 4,000</td>
+                    </tr>
+                    <tr>
+                        <td>UI/UX Design</td>
+                        <td>1,500 - 3,000</td>
+                    </tr>
+                    <tr>
+                        <td>Networking Services</td>
+                        <td>2,200 - 4,400</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="mpesa" class="section">
+            <h2>M-Pesa Integration</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Basic Integration</h3>
+                    <p>Setup: KES 20,000 - 60,000</p>
+                    <p>Maintenance: KES 3,000 - 6,000 / month</p>
+                </div>
+                <div class="card">
+                    <h3>Advanced Integration</h3>
+                    <p>Setup: KES 60,000 - 120,000</p>
+                    <p>Maintenance: KES 6,000 - 12,000 /month</p>
+                </div>
+            </div>
+        </section>
+        
+        <button class="cta" id="getQuoteBtn">
+          <span>Get a Quote</span>
+          <svg width="15px" height="10px" viewBox="0 0 13 10">
+            <path d="M1,5 L11,5"></path>
+            <polyline points="8 1 12 5 8 9"></polyline>
+          </svg>
+        </button>
+    </div>
+
+    <div id="quoteModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Request a Quote</h2>
+            <form id="quoteForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                
+                <label for="projectType">Project Type:</label>
+                <select id="projectType" name="projectType" required>
+                    <option value="">Select a project type</option>
+                    <option value="Website">Personal/Business Website</option>
+                    <option value="Mobile">Mobile App</option>
+                    <option value="E-commerce">E-commerce Application</option>
+                    <option value="CRM">CRM and Business Management</option>
+                    <option value="E-Learning">E-Learning Platform</option>
+                    <option value="Networking">Networking and IoT Application</option>
+
+                </select>
+
+                <label for="projectSize">Project Size:</label>
+                <select id="projectSize" name="projectSize" required>
+                    <option value="">Select project size</option>
+                    <option value="Basic">Basic</option>
+                    <option value="Intermediate">Intermediate</option>
+                    <option value="Advanced">Advanced</option>
+                </select>
+
+                <label for="additionalServices">Additional Services:</label>
+                <select id="additionalServices" name="additionalServices" multiple>
+                    <option value="UI/UX Design">UI/UX Design</option>
+                    <option value="Database Management">Database Management</option>
+                    <option value="MPesa Integration">M-Pesa Integration</option>
+                </select>
+
+                <label for="message">Additional Details:</label>
+                <textarea id="message" name="message" rows="4"></textarea>
+
+                <div id="quoteBreakdown"></div>
+                <button class="cta" type="submit" id="getQuoteBtn">
+                    <span>Submit Quote Request</span>
+                    <svg width="15px" height="10px" viewBox="0 0 13 10">
+                      <path d="M1,5 L11,5"></path>
+                      <polyline points="8 1 12 5 8 9"></polyline>
+                    </svg>
+                  </button>
+            </form>
+        </div>
+    </div>
+    <div class="mdb">
+        <div class="snackbar">
+            <svg class="wave" viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M0,256L11.4,240C22.9,224,46,192,69,192C91.4,192,114,224,137,234.7C160,245,183,235,206,213.3C228.6,192,251,160,274,149.3C297.1,139,320,149,343,181.3C365.7,213,389,267,411,282.7C434.3,299,457,277,480,250.7C502.9,224,526,192,549,181.3C571.4,171,594,181,617,208C640,235,663,277,686,256C708.6,235,731,149,754,122.7C777.1,96,800,128,823,165.3C845.7,203,869,245,891,224C914.3,203,937,117,960,112C982.9,107,1006,181,1029,197.3C1051.4,213,1074,171,1097,144C1120,117,1143,107,1166,133.3C1188.6,160,1211,224,1234,218.7C1257.1,213,1280,139,1303,133.3C1325.7,128,1349,192,1371,192C1394.3,192,1417,128,1429,96L1440,64L1440,320L1428.6,320C1417.1,320,1394,320,1371,320C1348.6,320,1326,320,1303,320C1280,320,1257,320,1234,320C1211.4,320,1189,320,1166,320C1142.9,320,1120,320,1097,320C1074.3,320,1051,320,1029,320C1005.7,320,983,320,960,320C937.1,320,914,320,891,320C868.6,320,846,320,823,320C800,320,777,320,754,320C731.4,320,709,320,686,320C662.9,320,640,320,617,320C594.3,320,571,320,549,320C525.7,320,503,320,480,320C457.1,320,434,320,411,320C388.6,320,366,320,343,320C320,320,297,320,274,320C251.4,320,229,320,206,320C182.9,320,160,320,137,320C114.3,320,91,320,69,320C45.7,320,23,320,11,320L0,320Z"
+                fill-opacity="1"
+              ></path>
+            </svg>
+          
+            <div class="icon-container">
+              
+            </div>
+            <div class="message-text-container">
+              <p class="message-text">Success message</p>
+              <p class="sub-text" id="text_message"></p>
+            </div>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 15 15"
+              stroke-width="0"
+              fill="none"
+              stroke="currentColor"
+              class="cross-icon"
+            >
+              <path
+                fill="currentColor"
+                d="M11.7816 4.03157C12.0062 3.80702 12.0062 3.44295 11.7816 3.2184C11.5571 2.99385 11.193 2.99385 10.9685 3.2184L7.50005 6.68682L4.03164 3.2184C3.80708 2.99385 3.44301 2.99385 3.21846 3.2184C2.99391 3.44295 2.99391 3.80702 3.21846 4.03157L6.68688 7.49999L3.21846 10.9684C2.99391 11.193 2.99391 11.557 3.21846 11.7816C3.44301 12.0061 3.80708 12.0061 4.03164 11.7816L7.50005 8.31316L10.9685 11.7816C11.193 12.0061 11.5571 12.0061 11.7816 11.7816C12.0062 11.557 12.0062 11.193 11.7816 10.9684L8.31322 7.49999L11.7816 4.03157Z"
+                clip-rule="evenodd"
+                fill-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
+    </div>
+   
+    
+    
+    <nav class="mobile-nav">
+        <a href="#categories" class="nav-item">
+            <div class="icon"><i class="bi bi-grid"></i></div>
+            <span>Categories</span>
+        </a>
+        <a href="#hourly-rates" class="nav-item">
+            <div class="icon"><i class="bi bi-clock"></i></div>
+            <span>Rates</span>
+        </a>
+        <a href="#mpesa" class="nav-item">
+            <div class="icon"><i class="bi bi-credit-card"></i></div>
+            <span>M-Pesa</span>
+        </a>
+        <a href="#" class="nav-item" id="mobileQuoteBtn">
+            <div class="icon"><i class="bi bi-calculator"></i></div>
+            <span>Quote</span>
+        </a>
+    </nav>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        // Modal functionality
+        const modal = document.getElementById("quoteModal");
+        const btn = document.getElementById("getQuoteBtn");
+        const mobileBtn = document.getElementById("mobileQuoteBtn");
+        const span = document.getElementsByClassName("close")[0];
+        const snackbar = $('.mdb')
+
+        function showSnackBar(type,message){
+            const icon = $('.icon-container')
+            const msgBox = $('.sub-text')
+            const text  = $('.message-text')
+            const wave = $('.wave')
+            const successIcon = `
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 512 512"
+                stroke-width="0"
+                fill="currentColor"
+                stroke="currentColor"
+                class="snackbar_icon"
+                style="color: #269b24;"
+              >
+                <path
+                  d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-111 111-47-47c-9.4-9.4-24.6-9.4-33.9 0s-9.4 24.6 0 33.9l64 64c9.4 9.4 24.6 9.4 33.9 0L369 209z"
+                ></path>
+              </svg>
+            `
+            const errorIcon =`    <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 512 512"
+                                    stroke-width="0"
+                                    fill="currentColor"
+                                    stroke="currentColor"
+                                    class="snackbar_icon"
+                                    style="color: #d10d0d;"
+                                    >
+                                    <path
+                                        d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z"
+                                    ></path>
+                                    </svg>`
+            if(type==='success'){
+                icon.html(successIcon)
+                msgBox.html(message)
+                text.html('Success Message')
+
+                text.css('color','#269b24')
+                wave.css('fill','#04e4003a')
+                icon.css('background-color','#04e40048 ')
+            }
+            else{
+                icon.html(errorIcon)
+                msgBox.html(message)
+                text.html('Error Message')
+                text.css('color','#d10d0d')
+                wave.css('fill','#fc0c0c3a')
+                icon.css('background-color','#fc0c0c48')
+            }
+            snackbar.addClass('show')
+
+            setTimeout(()=>{
+                snackbar.removeClass('show')
+            },6000)
+
+        }
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        mobileBtn.onclick = function() {
+            modal.style.display = "block";
+        }
+
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Mobile navigation functionality
+        const navItems = document.querySelectorAll('.nav-item');
+
+        navItems.forEach(item => {
+            item.addEventListener('click', function() {
+                navItems.forEach(i => i.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+
+        // Intersection Observer for section highlighting
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.7,
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelector(`.nav-item[href="#${id}"]`).classList.add('active');
+                } else {
+                    const id = entry.target.getAttribute('id');
+                    document.querySelector(`.nav-item[href="#${id}"]`).classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Quote calculation and breakdown
+        const form = document.getElementById('quoteForm');
+        const quoteBreakdown = document.getElementById('quoteBreakdown');
+
+        form.addEventListener('change', updateQuote);
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const basePrice = parseInt(document.getElementById('basePrice').innerHTML.replace(',', ''))
+            const additionalPrice = parseInt(document.getElementById('additionalPrice').innerHTML.replace(',', ''))
+            const totalPrice = parseInt(document.getElementById('totalPrice').innerHTML.replace(',', ''))
+            const name = document.getElementById('name').value
+            const email = document.getElementById('email').value
+            const projectType = document.getElementById('projectType').value
+            const projectSize = document.getElementById('projectSize').value
+            const additionalServices = document.getElementById('additionalServices')
+            const selectedServices = Array.from(additionalServices.selectedOptions).map(option => option.value);
+            const additionalInfo = document.getElementById('message').value
+
+            let payload = {
+                name:name,
+                email:email,
+                projectSize:projectSize,
+                projectType:projectType,
+                additionalServices:selectedServices,
+                additionalInfo:additionalInfo,
+                basePrice:basePrice,
+                additionalPrice:additionalPrice,
+                totalPrice:totalPrice
+            }
+            console.table(JSON.stringify(payload))
+            $.ajax({
+                method:'post',
+                url:'https://konnektsmartlife.net/rickie/sendmail',
+                data:payload,
+                success:function(data){
+                    modal.style.display = "none";
+
+                    console.log(data)
+                    showSnackBar('success',data.message)
+                },
+                error:function(err){
+                    modal.style.display = "none";
+
+                    console.log(err)
+                    showSnackBar('error',"Something went wrong")
+                }
+
+            })
+       
+        });
+
+        function updateQuote() {
+            const projectType = document.getElementById('projectType').value;
+            const projectSize = document.getElementById('projectSize').value;
+            const additionalServices = Array.from(document.getElementById('additionalServices').selectedOptions).map(option => option.value);
+
+            let basePrice = 0;
+            let additionalCosts = 0;
+           
+            // Set base price based on project type and size
+            switch(projectType) {
+                case 'Website':
+                    basePrice = projectSize === 'Basic' ? 15000 : projectSize === 'Intermediate' ? 30000 : 60000;
+                    break
+                case 'E-commerce':
+                    basePrice = projectSize === 'Basic' ? 30000 : projectSize === 'Intermediate' ? 60000 : 150000;
+                    break;
+                case 'CRM':
+                    basePrice = projectSize === 'Basic' ? 50000 : projectSize === 'Intermediate' ? 100000 : 180000;
+                    break;
+                
+                case 'E-Learning':
+                    basePrice = projectSize === 'Basic' ? 75000 : projectSize === 'Intermediate' ? 150000 : 300000;
+                    break;
+                case 'Networking':
+                    basePrice = projectSize === 'Basic' ? 40000 : projectSize === 'Intermediate' ? 80000 : 160000;
+                    break;
+                case 'Mobile':
+                basePrice = projectSize === 'Basic' ? 20000 : projectSize === 'Intermediate' ? 40000 : 80000;
+                break;
+            }
+
+            // Add costs for additional services
+            if (additionalServices.includes('UI/UX Design')) additionalCosts += 10000;
+            if (additionalServices.includes('Database Management')) additionalCosts += 7000;
+            if (additionalServices.includes('MPesa Intergration')) additionalCosts += 5000;
+
+            const totalCost = basePrice + additionalCosts;
+            quoteBreakdown.innerHTML = `
+                <h3>Estimated Quote Breakdown:</h3>
+                <p >Base Project Cost: KES <span id="basePrice"> ${basePrice.toLocaleString()}</span></p>
+                <p >Additional Services: KES <span id="additionalPrice">${additionalCosts.toLocaleString()}</span> </p>
+                <p ><strong>Total Estimated Cost: KES <span id="totalPrice">${totalCost.toLocaleString()}</span> </strong></p>
+                <p><em>Note: This is a rough estimate. We'll provide a detailed quote via email.</em></p>
+            `;
+        }
+    </script>
+</body>
+</html>
